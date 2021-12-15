@@ -11,9 +11,11 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 日期格式
      */
-    private static String[] parsePatterns = {"yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
+    private static String[] parsePatterns = {
+            "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
             "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
-            "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
+            "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"
+    };
 
     /**
      * 得到当前日期字符串 格式（yyyy-MM-dd）
@@ -33,7 +35,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * 得到日期字符串 默认格式（yyyy-MM-dd） pattern可以为："yyyy-MM-dd" "HH:mm:ss" "E"
      */
     public static String formatDate(Date date, Object... pattern) {
-        String formatDate = null;
+        String formatDate;
         if (pattern != null && pattern.length > 0) {
             formatDate = DateFormatUtils.format(date, pattern[0].toString());
         } else {
@@ -169,7 +171,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      *
      * @param date
      * @return Date
-     * @author 高一平
      */
     public static Date getDayBegin(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -186,7 +187,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      *
      * @param date
      * @return Date
-     * @author 高一平
      */
     public static Date getDayEnd(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -203,7 +203,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      *
      * @param date
      * @return Date
-     * @author 高一平
      */
     public static Date getDayCenter(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -236,7 +235,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @param date
      * @param num  正数为几天后，负数为几天前
      * @return
-     * @author: 高一平
      */
     public static Date getDatePastOrFutureDay(Date date, int num) {
         Calendar calendar = Calendar.getInstance();
@@ -267,7 +265,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @param date
      * @param num  正数为几分钟后，负数为几分钟前
      * @return
-     * @author 高一平
      */
     public static Date getDatePastOrFutureMinute(Date date, int num) {
         Calendar calendar = Calendar.getInstance();

@@ -1,5 +1,7 @@
 package com.yiping.gao.blockchain;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @Date: 2019/9/5 20:26
  * @Description: 区块链相关工具
  **/
+@Slf4j
 public class BlockchainUtils {
 
     /**
@@ -29,11 +32,11 @@ public class BlockchainUtils {
             currentBlock = blockchain.get(i);
             preBlock = blockchain.get(i - 1);
             if (!currentBlock.hash.equals(currentBlock.getHash())) {
-                System.out.println("Current Hashes not equal");
+                log.error("Current Hashes not equal");
                 return false;
             }
             if (!preBlock.hash.equals(currentBlock.preHash)) {
-                System.out.println("Previous Hashes not equal");
+                log.error("Previous Hashes not equal");
                 return false;
             }
         }

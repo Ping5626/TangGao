@@ -64,30 +64,6 @@ public abstract class MapUtils {
     public abstract Position getPosition(String address) throws Exception;
 
     /**
-     * 获取经纬度
-     *
-     * @param locationStr
-     * @param address
-     * @return
-     */
-    public Position getPosition(String locationStr, String address) throws Exception {
-        Position position = null;
-        if (locationStr != null && locationStr.trim().length() > 0) {
-            String[] location = locationStr.split(",");
-            if (location.length == 2) {
-                position = new Position();
-                position.setLatitude(Double.valueOf(location[0]));
-                position.setLongitude(Double.valueOf(location[1]));
-            }
-        }
-        if (position == null) {
-            position = getPosition(address);
-
-        }
-        return position;
-    }
-
-    /**
      * 获取距离
      *
      * @param mainPosition

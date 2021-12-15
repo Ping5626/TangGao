@@ -2,6 +2,7 @@ package com.yiping.gao.blockchain;
 
 import com.yiping.gao.common.utils.encrypt.EncryptUtils;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Author: 高一平
@@ -19,6 +20,7 @@ import lombok.Data;
  * 一方面产生重复hash值的可能性很小
  * 另一方面在区块链实际应用过程中，有可能会产生大量的区块，而使得信息量很大，那么256位的大小就比较恰当了
  **/
+@Slf4j
 @Data
 public class Block {
 
@@ -62,7 +64,6 @@ public class Block {
      * 因为篡改的区块链将无法赶上长链和有效链
      * 除非他们比你网络中所有的节点拥有更大的计算速度，可能是未来的量子计算机或者是其他什么。
      *
-     *
      * @param difficulty
      */
     public void mineBlock(int difficulty) {
@@ -71,6 +72,6 @@ public class Block {
             nonce++;
             hash = getHash();
         }
-        System.out.println("Block Mined!!! : " + hash);
+        log.info("Block Mined!!! : " + hash);
     }
 }

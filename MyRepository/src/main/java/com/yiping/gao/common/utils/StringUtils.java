@@ -10,21 +10,27 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     private static final char SEPARATOR = '_';
     private static final String DEFAULT_CHARSET = "UTF-8";
+    private static final String[] CHARSET = {"utf-8", "UTF-8", "iso8859-1", "ISO8859-1", "GB2312", "GBK"};
 
     /**
      * 获取指定字符集的字符串
      *
-     * @param string 字符串
+     * @param string  字符串
+     * @param charset 指定字符集
      * @return 指定字符集的字符串
      * @throws UnsupportedEncodingException
      */
-    public static String getStringByEncoding(String string) throws UnsupportedEncodingException {
+    public static String getStringByEncoding(String string, String charset) throws UnsupportedEncodingException {
         // 判断是否是系统设定的字符集
-        if (!judgeEncoding(DEFAULT_CHARSET, string) == true) {
+        if (!judgeEncoding(charset, string)) {
             // 不是，判断是什么字符集
             String encoding = getEncoding(string);
             // 重新使用指定字符集编码
-            string = new String(string.getBytes(encoding), DEFAULT_CHARSET);
+            if (encoding != null) {
+                string = new String(string.getBytes(encoding), charset);
+            } else {
+                string = null;
+            }
         }
         return string;
     }
@@ -37,9 +43,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @throws UnsupportedEncodingException
      */
     public static String getEncoding(String string) throws UnsupportedEncodingException {
-        String[] encodings = {"utf-8", "UTF-8", "iso8859-1", "ISO8859-1", "GB2312", "GBK"};
-        for (String encoding : encodings) {
-            if (judgeEncoding(encoding, string) == true) {
+        for (String encoding : CHARSET) {
+            if (judgeEncoding(encoding, string)) {
                 return encoding;
             }
         }
@@ -212,12 +217,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      *
      * @param str 字符串
      * @return 指定的字符串是否为空
-     * <ul>
-     *      <li>isEmpty(null) = true</li>
-     *      <li>isEmpty("") = true</li>
-     *      <li>isEmpty("   ") = true</li>
-     *      <li>isEmpty("abc") = false</li>
-     * </ul>
      */
     public static boolean isEmpty(String str) {
         if (str == null || str.isEmpty()) {

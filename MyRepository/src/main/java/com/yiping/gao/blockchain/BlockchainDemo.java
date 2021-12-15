@@ -2,6 +2,7 @@ package com.yiping.gao.blockchain;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,8 @@ import java.util.ArrayList;
  * 除非他们比你网络中所有的节点拥有更大的计算速度，可能是未来的量子计算机或者是其他什么。
  * ************************************************************************************************************
  **/
-public class BlockchainTest {
+@Slf4j
+public class BlockchainDemo {
 
     public static ArrayList<Block> blocks = new ArrayList<>();
     public static int difficulty = 5;
@@ -59,22 +61,20 @@ public class BlockchainTest {
      */
     public static void main(String[] args) {
         blocks.add(new Block("Hi im the first block", "0"));
-        System.out.println("Trying to Mine block 1... ");
+        log.info("Trying to Mine block 1... ");
         blocks.get(0).mineBlock(difficulty);
 
         blocks.add(new Block("Yo im the second block", blocks.get(blocks.size() - 1).hash));
-        System.out.println("Trying to Mine block 2... ");
+        log.info("Trying to Mine block 2... ");
         blocks.get(1).mineBlock(difficulty);
 
         blocks.add(new Block("Hey im the third block", blocks.get(blocks.size() - 1).hash));
-        System.out.println("Trying to Mine block 3... ");
+        log.info("Trying to Mine block 3... ");
         blocks.get(2).mineBlock(difficulty);
 
-        JSONArray array = (JSONArray) JSONArray.toJSON(blocks);
-        String jsonString = JSON.toJSONString(array, true);
-        System.out.println("\nBlockChain is Valid: " + BlockchainUtils.isChainValid(blocks));
-        System.out.println("\nThe block chain: ");
-        System.out.println(jsonString);
+        log.info("BlockChain is Valid: " + BlockchainUtils.isChainValid(blocks));
+        log.info("The block chain: ");
+        log.info("\n" + JSON.toJSONString(blocks, true));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.yiping.gao.tests.clazz;
+package com.yiping.gao.jvm.clazz;
 
 import com.yiping.gao.pojo.Result;
 
@@ -10,7 +10,7 @@ import java.lang.reflect.*;
  * @Date: 2019/9/2 20:57
  * @Description: Java 反射
  **/
-public class ClassTest {
+public class ClassDemo {
 
     public static void run() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Result result = new Result();

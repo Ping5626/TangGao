@@ -34,7 +34,8 @@ public class CommonThreadPool {
      */
     public static ThreadPoolExecutor getPool() {
         if (pool == null) {
-            pool = new ThreadPoolExecutor(5, 100, 5, TimeUnit.MICROSECONDS,
+            int cores = Runtime.getRuntime().availableProcessors();
+            pool = new ThreadPoolExecutor(cores / 4, cores/2, 5, TimeUnit.MINUTES,
                     new SynchronousQueue<>(), new NamedThreadFactory("COMMON"), new CommonRejectedExecutionHandler());
         }
         return pool;
@@ -66,8 +67,7 @@ public class CommonThreadPool {
                 queue.putLast(r);
             } catch (InterruptedException e) {
                 throw new RejectedExecutionException("Task " + r.toString() +
-                        " rejected from " +
-                        e.toString());
+                        " rejected from " + e);
             }
         }
     }

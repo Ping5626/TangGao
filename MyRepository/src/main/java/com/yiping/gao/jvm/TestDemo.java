@@ -1,4 +1,4 @@
-package com.yiping.gao.tests;
+package com.yiping.gao.jvm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  * @date 2021/5/20
  * @description 测试
  */
-public class TestApplication {
+public class TestDemo {
 
     private static final List<TestCase> cases = new ArrayList<>();
 
