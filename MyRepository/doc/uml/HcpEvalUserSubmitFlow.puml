@@ -1,0 +1,16 @@
+@startuml
+start
+:办件评价列表;
+if (是否需要评价) then (是)
+    if (是否评价) then (否)
+        :跳转评价页面;
+        :提交评价;
+        end
+    else (是)
+        :跳转评价详情页面;
+        end
+    endif
+else (否)
+    end
+endif
+@enduml

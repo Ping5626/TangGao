@@ -1,0 +1,68 @@
+@startuml
+start
+:新增评价
+eval_evaluate_info
+新增一条记录;
+if (是否好评？) then (alternate>=3)
+    :好评;
+    if (是否有文字评价) then (writing_evaluation非空)
+        :有文字评价;
+        :审核文字内容;
+        :记录文字审核结果
+        writing_check_status=
+        有效评价
+        effective_check_status=1
+        无需整改
+        reform_status=-1;
+        :上报文字审核结果;
+    else (writing_evaluation为空)
+        :无文字评价;
+        :文字审核默认通过
+        writing_check_status=1
+        有效评价
+        effective_check_status=1
+        无需整改
+        reform_status=-1;
+    endif
+    stop
+else (alternate<3)
+    :差评;
+    if (是否有文字评价) then (writing_evaluation非空)
+          :有文字评价;
+          :审核文字内容;
+          :记录文字审核结果
+          writing_check_status=;
+          :上报文字审核结果;
+    else (writing_evaluation为空)
+        :无文字评价;
+        :文字内容审核默认通过
+        writing_check_status=1;
+    endif
+    :提交12345系统;
+    if(判断是否有效？) then (有效评价)
+        :记录该评价有效
+        effective_check_status=1
+        需要整改;
+        if (20工作日是否可以按时整改？) then (是)
+        else (否)
+            :记录延期原因
+            overdue_reason;
+            :上报延期整改;
+        endif
+        :该评价已整改
+        reform_status=1
+        记录整改措施
+        reform_method
+        记录反馈记信息
+        feedback;
+        :上报反馈整改结果;
+    else (无效评价)
+        :记录该评价
+        effective_check_status=2
+        无需整改
+        reform_status=-1;
+        :上报国家;
+        stop
+    endif
+stop
+@enduml

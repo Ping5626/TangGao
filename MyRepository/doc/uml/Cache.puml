@@ -1,0 +1,16 @@
+@startuml
+Cache <|.. AppCache
+Cache <|.. ServerCache
+Interface Cache {
+}
+
+Interface ServerCache {
+    void reBuild(Config conf);
+}
+
+Interface AppCache {
+    Object get(Object key);
+    void put(Object key, Object value);
+    void delete(Object key);
+}
+@enduml
