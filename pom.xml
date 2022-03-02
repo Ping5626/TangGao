@@ -16,6 +16,9 @@
 
     <modules>
         <module>MyRepository</module>
+        <module>JavaTrainingCamp</module>
+        <module>EsHighLevel</module>
+        <module>EsLowLevel</module>
     </modules>
 
     <properties>

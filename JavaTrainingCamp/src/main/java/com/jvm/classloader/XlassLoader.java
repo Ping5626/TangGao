@@ -14,41 +14,41 @@ import java.lang.reflect.Method;
  */
 public class XlassLoader extends ClassLoader {
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-        Class<?> xlass = new XlassLoader().loadClass("Hello");
-        Method helloMethod = xlass.getDeclaredMethod("hello");
-        helloMethod.invoke(xlass.getDeclaredConstructor().newInstance());
-    }
-
-    @Override
-    protected Class<?> findClass(String name) {
-        File file = new File("com/jvm/classloader/" + name + ".xlass");
-        InputStream in = null;
-        byte[] data = null;
-        try {
-            in = new FileInputStream(file);
-            byte[] bytes = in.readAllBytes();
-            data = decode(bytes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return defineClass(name, data, 0, data.length);
-    }
-
-    private byte[] decode(byte[] bytes) {
-        byte[] data = new byte[bytes.length];
-        for (int i = 0; i < bytes.length; i++) {
-            data[i] = (byte) (255 - bytes[i]);
-        }
-        return data;
-    }
+//    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+//        Class<?> xlass = new XlassLoader().loadClass("Hello");
+//        Method helloMethod = xlass.getDeclaredMethod("hello");
+//        helloMethod.invoke(xlass.getDeclaredConstructor().newInstance());
+//    }
+//
+//    @Override
+//    protected Class<?> findClass(String name) {
+//        File file = new File("com/jvm/classloader/" + name + ".xlass");
+//        InputStream in = null;
+//        byte[] data = null;
+//        try {
+//            in = new FileInputStream(file);
+//            byte[] bytes = in.readAllBytes();
+//            data = decode(bytes);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (in != null) {
+//                try {
+//                    in.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return defineClass(name, data, 0, data.length);
+//    }
+//
+//    private byte[] decode(byte[] bytes) {
+//        byte[] data = new byte[bytes.length];
+//        for (int i = 0; i < bytes.length; i++) {
+//            data[i] = (byte) (255 - bytes[i]);
+//        }
+//        return data;
+//    }
 
 }
