@@ -13,8 +13,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 /**
  * @author 高一平
  * @date 2022/1/10
@@ -24,7 +22,7 @@ import java.io.IOException;
 @Component
 public class EsHttpHighClient {
 
-    public ElasticsearchClient getClient() throws IOException {
+    public ElasticsearchClient getClient() {
         // ES 连接信息
         HttpHost[] hosts = {new HttpHost("localhost", 9200, "http")};
         // 设置身份认证
